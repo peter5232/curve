@@ -14,6 +14,11 @@ else
     bazelflags='--copt -faligned-new'
 fi
 
+if [[ $(uname -i) == 'aarch64' || $(uname -m) == 'aarch64' ]]; then
+    bazelflags="$bazelflags --define=compile_flags=gcc_arm64"
+fi
+
+
 if [ "$1" = "debug" ]
 then
 DEBUG_FLAG="--compilation_mode=dbg"

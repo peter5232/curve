@@ -221,7 +221,9 @@ build_target() {
         g_build_opts+=("--config=msan")
     fi
     
-    g_build_opts+=("--define=compile_flags=gcc_arm64")
+    if [[ $(uname -i) == 'aarch64' || $(uname -m) == 'aarch64' ]]; then
+        g_build_opts+=("--define=compile_flags=gcc_arm64")
+    fi
     
     for target in "${target_array[@]}"
     do
