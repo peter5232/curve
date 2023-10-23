@@ -7,17 +7,18 @@ ENV GITHUB_PROXY=https://ghproxy.com/
 #     && git checkout a14bcd3ecdfcedd9398cbe74edf17b8173e417a0  \
 #     && mv /fix-gcc11.patch thirdparties/brpc/fix-gcc11.patch  \
 #     &&  sed -i "s;//:thirdparties/brpc/brpc.patch;//:thirdparties/brpc/brpc.patch\",\"//:thirdparties/brpc/fix-gcc11.patch;g" WORKSPACE 
-RUN git clone https://ghproxy.com/https://github.com/peter5232/curve.git
-RUN cd /curve && make dep stor=bs os=openeuler
-RUN cd /curve && make dep stor=fs os=openeuler
-#RUN cd /curve && bash util/build_in_image.sh --stor=bs '--only=src/*' --dep=1 --release=1 --ci=0 --os=openeuler
-#RUN cd  /curve &&  bash util/build_in_image.sh --stor=fs '--only=src/*' --dep=1 --release=1 --ci=0 --os=openeuler
+RUN git clone https://ghproxy.com/https://github.com/peter5232/curve.git 
+RUN cd curve && bash replace-curve-repo.sh
+#RUN cd /curve && make dep stor=bs os=openeuler
+#RUN cd /curve && make dep stor=fs os=openeuler
+RUN cd /curve && bash util/build_in_image.sh --stor=bs '--only=src/*' --dep=1 --release=1 --ci=0 --os=openeuler
+RUN cd  /curve &&  bash util/build_in_image.sh --stor=fs '--only=src/*' --dep=1 --release=1 --ci=0 --os=openeuler
 
 # 设置pip镜像
 RUN echo -e "[global]\nindex-url = https://pypi.tuna.tsinghua.edu.cn/simple" >>/root/.config/pip/pip.conf
 RUN wget https://curve-build.nos-eastchina1.126.net/get-pip.py && python2 get-pip.py && python2 -m pip install wheel setuptools
 
-RUN cd /curve &&  bash -x mk-tar.sh
+RUN cd /curve &&  make tar dep=1 stor=fs os=openeuler
 RUN cd /curve &&  mv curve_*.tar.gz curve_sdk.tar.gz
 RUN cd /curve && ls ./curvefs_python/tmplib/
 

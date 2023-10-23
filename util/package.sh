@@ -107,6 +107,10 @@ for i in $(readlink -f bazel-bin)/*; do
     cp -rf $i $outdir
 done
 
+if [[ $(uname -i) == 'aarch64' || $(uname -m) == 'aarch64' ]]; then
+    bazelflags="--define=compile_flags=gcc_arm64"
+fi
+
 for _ in {1..2}; do
     sudo docker run \
         -it --rm \

@@ -257,3 +257,4 @@ index bf5e93e2..e94a9c73 100644
 +inline void UNALIGNED_STORE64(void *p, uint64_t v) {
      memcpy(p, &v, sizeof v);
  }
+
