@@ -37,6 +37,7 @@ git_repository(
     commit = "d12de388c97998f5ccd5cb97ed0da728815ef438",
     patches = [
         "//:thirdparties/braft/0001-fix-change-set_error-to-set_errorv.patch",
+        "//:thirdparties/braft/arm64.patch",
     ],
     patch_args = [
         "-p1"
@@ -142,7 +143,8 @@ git_repository(
     patches = [
         "//:thirdparties/brpc/brpc.patch",
         "//:thirdparties/brpc/fix-gcc11.patch",
-        "//:thirdparties/brpc/0001-bvar-warning-on-conflict-bvar-name.patch", 
+        "//:thirdparties/brpc/0001-bvar-warning-on-conflict-bvar-name.patch",
+        "//:thirdparties/brpc/arm64.patch", 
     ],
     patch_args = ["-p1"],
 )
