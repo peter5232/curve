@@ -24,7 +24,7 @@ COPTS = [
     "-DNDEBUG",
     "-fno-omit-frame-pointer",
     "-momit-leaf-frame-pointer",
-    "-msse4.2",
+    # "-msse4.2",
     "-pthread",
     "-Wsign-compare",
     "-Wno-unused-parameter",

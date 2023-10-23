@@ -220,7 +220,9 @@ build_target() {
     elif [ $g_san == 2 ]; then
         g_build_opts+=("--config=msan")
     fi
-
+    
+    g_build_opts+=("--define=compile_flags=gcc_arm64")
+    
     for target in "${target_array[@]}"
     do
         bazel build ${g_build_opts[@]} $target
@@ -261,6 +263,9 @@ build_requirements() {
             g_build_opts+=("--define IO_URING_SUPPORT=1")
         fi
         g_rocksdb_root="${PWD}/thirdparties/rocksdb"
+        if [[ $(uname -i) == 'aarch64' || $(uname -m) == 'aarch64' ]]; then
+            g_build_rocksdb=1
+        fi
         (cd ${g_rocksdb_root} && make build from_source=${g_build_rocksdb} && make install prefix=${g_rocksdb_root})
         g_memcache_root="${PWD}/thirdparties/memcache"
         (cd ${g_memcache_root} && make build)

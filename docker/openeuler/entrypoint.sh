@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-# Copyright (C) 2021 Jingli Chen (Wine93), NetEase Inc.
+# Copyright (C) 2023 Chenglin Zhang (peter5232), NetEase Inc.
 
 ############################  GLOBAL VARIABLES
 g_role=""

@@ -19,7 +19,7 @@ load("//:copts.bzl", "BASE_FLAGS", "CURVE_DEFAULT_COPTS")
 cc_binary(
     name = "curve-fuse",
     srcs = ["main.cpp"],
-    copts = BASE_FLAGS + [
+    copts = CURVE_DEFAULT_COPTS + [
         "-I/usr/local/include/fuse3",
     ],
     linkopts = [

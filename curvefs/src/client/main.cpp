@@ -154,7 +154,7 @@ void free_parsed_argv(char** parsed_argv, int alloc_size) {
 }
 
 int main(int argc, char *argv[]) {
-    struct MountOption mOpts = {0};
+    struct MountOption mOpts = {0, 0, 0, 0, 0};
     int parsed_argc = argc;
     char** parsed_argv = reinterpret_cast<char**>(malloc(sizeof(char*) * argc));
     parse_option(argc, argv, &parsed_argc, parsed_argv, &mOpts);
